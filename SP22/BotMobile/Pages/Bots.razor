@@ -1,0 +1,47 @@
+﻿@page "/bots"
+@inject IMessageAPIService MessageService
+
+<label class="h2">Bots</label>
+
+@if(_bots == null)
+{
+    <label>Loading bots.</label>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bot in _bots)
+            {
+                <tr>
+                    <td>
+                        @bot.Id
+                    </td>
+                    <td>
+                        @bot.Name
+                    </td>
+                    <td>
+                        @(bot.Messages == null ? "None" : bot.Messages.Count > 0 ? "None" : bot.Messages[0])
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private List<BotModel> _bots;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _bots = await MessageService.GetBots();
+    }
+}

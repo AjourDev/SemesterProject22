@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using BotMobile.Data;
+using BotMobile.Services;
 
 namespace BotMobile;
 
@@ -16,6 +17,7 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddMauiBlazorWebView();
+		builder.Services.AddScoped<IMessageAPIService, MessageAPIService>();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
@@ -27,4 +29,3 @@ public static class MauiProgram
 		return builder.Build();
 	}
 }
-
