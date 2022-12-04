@@ -1,6 +1,6 @@
-﻿using GeneralMessaging.Services;
+﻿string hostName = args[0];
 
-Console.WriteLine("Starting application");
+Console.WriteLine("Starting application.");
 
 IConnectionFactory ICF = new ConnectionFactory() { HostName = "localhost", AutomaticRecoveryEnabled = true };
 ISimpleMessageService messageService = new SimpleMessageService(ICF);
@@ -12,7 +12,7 @@ if (channel == null)
 
 // Declare
 
-// Handler
+// Message handler
 
 // Consumer
 
